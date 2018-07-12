@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 APP="cnapps"
 
 VERSION=$(shell \
@@ -27,7 +26,7 @@ WARN_COLOR=\033[33;01m
 
 MAKE_COLOR=\033[33;01m%-20s\033[0m
 
-DB_ENGINE = "cockroachdb://cnapps:cnapps@localhost:26257/bank?sslmode=disable"
+DB_ENGINE = "cockroachdb://cnapps@192.168.99.100:32007/cnapps?sslmode=disable"
 
 SHELL = /bin/bash
 DOCKER = docker
