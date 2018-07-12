@@ -37,17 +37,14 @@ Deploy CockroachDB into the Kubernetes minikube cluster:
 
     $ ./scripts/kubernetes.sh minikube local create latest
 
+Configure your `/etc/hosts`:
 
-### Python-Flask
+    $ echo $(KUBECONFIG=./deploy/minikube-kube-config minikube ip) cockroach.cnapps.minikube | sudo tee -a /etc/hosts
 
-Execute in local:
 
-    $ make run
+### Applications
 
-check health:
-
-    $ curl http://127.0.0.1:9191/health
-    {"database":{"database_status":"ok","version":["('CockroachDB CCL v2.0.3 (x86_64-unknown-linux-gnu, built 2018/06/18 16:11:33, go1.10)',)"]},"global_status":"ok"}
+* [python-flask/README.md] Flask
 
 
 ## License
