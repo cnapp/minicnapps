@@ -12,27 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: Service
+apiVersion: extensions/v1beta1
+kind: Ingress
 metadata:
-  # This service is meant to be used by clients of the database. It exposes a ClusterIP that will
-  # automatically load balance connections to the different database pods.
-  name: cockroachdb-outside
+  name: cockroachdb
   labels:
     app: cockroachdb
 spec:
-  type: NodePort
-  ports:
-  # The main port, served by gRPC, serves Postgres-flavor SQL, internode
-  # traffic and the cli.
-  - port: 26257
-    targetPort: 26257
-    nodePort: 32007
-    name: grpc
-  # The secondary port serves the UI as well as health and debug endpoints.
-  - port: 8080
-    targetPort: 8080
-    nodePort: 32008
-    name: http
-  selector:
-    app: cockroachdb
+  rules:
+  - host: cockroach.cnapps.minikube
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: cockroachdb-outside
+          servicePort: 32007
