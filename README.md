@@ -9,6 +9,16 @@ Cloud Native Applications in differents languages:
 [ ] Python
 [ ] Go
 
+Features :
+
+* Metrics
+* Tracing
+* Logging
+* Versioning
+* Health
+* Stateless
+
+
 ## Development
 
 ### Minikube
