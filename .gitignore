@@ -1,0 +1,14 @@
+# Editors
+*~
+.vscode
+
+# Python
+*.pyc
+python-flask/venv
+python-flask/build
+python-flask/.cache
+python-flask/.tox
+python-flask/.coverage
+python-flask/cnapps/.pytest_cache/
+python-flask/htmlcov/
+python-flask/__pycache__/
