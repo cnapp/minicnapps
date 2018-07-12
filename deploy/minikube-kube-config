@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /home/nlamirault/.minikube/ca.crt
+    server: https://192.168.99.100:8443
+  name: cnapps
+contexts:
+- context:
+    cluster: cnapps
+    user: cnapps
+  name: cnapps
+current-context: cnapps
+kind: Config
+preferences: {}
+users:
+- name: cnapps
+  user:
+    client-certificate: /home/nlamirault/.minikube/client.crt
+    client-key: /home/nlamirault/.minikube/client.key
