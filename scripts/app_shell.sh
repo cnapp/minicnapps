@@ -23,6 +23,7 @@ if [ $# -ne 3 ]; then
 	echo "Usage: <cluster> <env> <app>"
 	exit 1
 fi
+
 cluster=$1
 env=$2
 app=$3
