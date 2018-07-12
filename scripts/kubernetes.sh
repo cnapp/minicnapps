@@ -19,21 +19,22 @@ SCRIPTPATH=$(dirname "$SCRIPT")
 
 . ${SCRIPTPATH}/commons.sh
 
-CLUSTER_CONFIG="./deploy/k8s-kube-config"
-MINIKUBE_CONFIG="./deploy/minikube-kube-config"
-kubeconfig=""
+# CLUSTER_CONFIG="./deploy/k8s-kube-config"
+# MINIKUBE_CONFIG="./deploy/minikube-kube-config"
+# kubeconfig=""
 
-clusters="minikube"
-environments="local"
+# clusters="minikube"
+# environments="local"
 
-namespace="cnapps"
+# docker_namespace="cnapps"
 app="cnapps-"
 
 url=""
+
 # Minikube cluster
 minikube_url="minikube"
 
-namespace=""
+# namespace=""
 
 
 function usage {
@@ -44,39 +45,39 @@ function usage {
 }
 
 
-function kube_context {
-    if  [ ! -x "$(command -v kubectl)" ]; then
-        kubectl_install
-    fi
-    echo -e "${OK_COLOR}Cluster: $1"
-    echo -e "${OK_COLOR}Environment: $2"
-    if [ "local" = "$2" ]; then
-        local context="cnapps"
-        namespace="-n cnapps"
-        echo -e "${OK_COLOR}Namespace: ${namespace}"
-    else
-        local context="${1}-cnapps-$2"
-    fi
-    kube_config ${env}
-    echo -e "${OK_COLOR}Switch to Kubernetes context: ${context}${NO_COLOR}" >&2
-    kubectl --kubeconfig=${kubeconfig} config use-context ${context} >&2 || exit 1
-}
+# function kube_context {
+#     if  [ ! -x "$(command -v kubectl)" ]; then
+#         kubectl_install
+#     fi
+#     echo -e "${OK_COLOR}Cluster: $1"
+#     echo -e "${OK_COLOR}Environment: $2"
+#     if [ "local" = "$2" ]; then
+#         local context="cnapps"
+#         namespace="-n cnapps"
+#         echo -e "${OK_COLOR}Namespace: ${namespace}"
+#     else
+#         local context="${1}-cnapps-$2"
+#     fi
+#     kube_config ${env}
+#     echo -e "${OK_COLOR}Switch to Kubernetes context: ${context}${NO_COLOR}" >&2
+#     kubectl --kubeconfig=${kubeconfig} config use-context ${context} >&2 || exit 1
+# }
 
 
-function kube_config {
-    env=$1
-    case ${env} in
-        local)
-            kubeconfig=${MINIKUBE_CONFIG}
-            ;;
-        stg|dev|itg|prp|prod)
-            kubeconfig=${CLUSTER_CONFIG}
-            ;;
-        *)
-            echo -e "${ERROR_COLOR}Invalid environment: ${env}${NO_COLOR}"
-            exit 1
-    esac
-}
+# function kube_config {
+#     env=$1
+#     case ${env} in
+#         local)
+#             kubeconfig=${MINIKUBE_CONFIG}
+#             ;;
+#         stg|dev|itg|prp|prod)
+#             kubeconfig=${CLUSTER_CONFIG}
+#             ;;
+#         *)
+#             echo -e "${ERROR_COLOR}Invalid environment: ${env}${NO_COLOR}"
+#             exit 1
+#     esac
+# }
 
 
 function kube_replace {
